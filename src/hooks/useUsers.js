@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 const fetchUser = async () => {
-  const response = await fetch("https://jsonplaceholder.typicode.com/users");
+  const response = await fetch("https://jsonplaceholder.typicode.com/users/1");
   return await response.json();
 };
 
@@ -21,3 +21,12 @@ export const useUserQuery = () => {
     queryFn: fetchUser,
   });
 };
+
+/*
+  - react-query 개발툴에서 확인할 수 있는 상태값 다섯개
+    1. fresh: 비동기 데이터가 현재 최신 상태 (refetching할 필요가 없는 신선한 상태)
+    2. fetching: 비동기 데이터 요청중인 상태 (pending)
+    3. paused: 특정 이유로 비동기 데이터 요청이 보류된 상태
+    4. stale: 현재 해당 컴포넌트에서 활용되고있는 데이터가 최신 상태가 아닌 경우 (refetching이 필요한 상태)
+    5. inactive: 최신 상태가 아닌 데이터를 해당 컴포넌트에서 현재 활용되고 있지 않은 상태 (일정시간 이후 해당 데이터가 삭제됨)
+*/

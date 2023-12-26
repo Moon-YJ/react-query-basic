@@ -1,6 +1,10 @@
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import UserInfo from "./UserInfo";
+import UserAddress from "./UserAddress";
+import Menu from "./Menu";
+import Main from "./Main";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   const queryClient = new QueryClient();
@@ -8,7 +12,12 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="App">
-        <UserInfo />
+        <Menu />
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/info" element={<UserInfo />} />
+          <Route path="/address" element={<UserAddress />} />
+        </Routes>
       </div>
       <ReactQueryDevtools />
     </QueryClientProvider>
